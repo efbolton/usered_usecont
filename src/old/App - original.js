@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useReducer, useState } from "react";
+import React from "react";
 
 function App() {
   const initialState = {
@@ -43,10 +43,10 @@ function App() {
     }
   };
 
-  const TodoListContext = createContext();
+  const TodoListContext = React.createContext();
 
   const Provider = ({ children }) => {
-    const [state, dispatch] = useReducer(reducer, initialState);
+    const [state, dispatch] = React.useReducer(reducer, initialState);
 
     const value = {
       todoList: state.todoList,
@@ -69,8 +69,8 @@ function App() {
   };
 
   const AddTodo = () => {
-    const [inputValue, setInputValue] = useState("");
-    const { addTodoItem } = useContext(TodoListContext);
+    const [inputValue, setInputValue] = React.useState("");
+    const { addTodoItem } = React.useContext(TodoListContext);
 
     return (
       <>
@@ -94,7 +94,7 @@ function App() {
 
   const TodoList = () => {
     const { todoList, removeTodoItem, markAsCompleted } =
-      useContext(TodoListContext);
+      React.useContext(TodoListContext);
     return (
       <ul>
         {todoList.map((todoItem) => (
